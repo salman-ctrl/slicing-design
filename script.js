@@ -25,3 +25,39 @@ if (setPasswordForm) {
     window.location.href = 'main-page.html';
   });
 }
+
+ window.addEventListener('DOMContentLoaded', function() {
+        const email = localStorage.getItem('resetEmail');
+        if (email) {
+          document.getElementById('displayEmail').textContent = email;
+        } else {
+          document.getElementById('displayEmail').textContent = 'No email provided';
+        }
+      });
+
+      document.getElementById('setPasswordForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const newPassword = document.getElementById('newPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const errorAlert = document.getElementById('errorAlert');
+        
+        if (newPassword !== confirmPassword) {
+          errorAlert.classList.remove('hidden');
+          setTimeout(() => {
+            errorAlert.classList.add('hidden');
+          }, 3000);
+          return;
+        }
+        
+        errorAlert.classList.add('hidden');
+        localStorage.removeItem('resetEmail');
+        window.location.href = 'main.html';
+      });
+
+       document.getElementById('forgotPasswordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            localStorage.setItem('resetEmail', email);
+            window.location.href = 'update-password.html';
+        });
