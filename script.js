@@ -1,58 +1,65 @@
-const inputs = document.querySelectorAll('.password-input');
-
-inputs.forEach(input => {
-  const label = input.previousElementSibling;
-  
-  if (input.value) {
-    label.classList.add('active');
-  }
-  
-  input.addEventListener('focus', () => {
-    label.classList.add('active');
-  });
-  
-  input.addEventListener('blur', () => {
-    if (!input.value) {
-      label.classList.remove('active');
+window.addEventListener('DOMContentLoaded', function() {
+    
+    const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+    if (forgotPasswordForm) {
+        forgotPasswordForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            localStorage.setItem('resetEmail', email);
+            window.location.href = 'update-password.html';
+        });
     }
-  });
-});
 
-const setPasswordForm = document.getElementById('setPasswordForm');
-if (setPasswordForm) {
-  setPasswordForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    window.location.href = 'main-page.html';
-  });
-}
-
- window.addEventListener('DOMContentLoaded', function() {
+    const setPasswordForm = document.getElementById('setPasswordForm');
+    if (setPasswordForm) {
         const email = localStorage.getItem('resetEmail');
-        if (email) {
-          document.getElementById('displayEmail').textContent = email;
-        } else {
-          document.getElementById('displayEmail').textContent = 'No email provided';
+        const displayEmail = document.getElementById('displayEmail');
+        if (displayEmail) {
+            displayEmail.textContent = email || 'No email provided';
         }
-      });
 
-      document.getElementById('setPasswordForm').addEventListener('submit', function(e) {
-        e.preventDefault();
+        setPasswordForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newPassword = document.getElementById('newPasswordInput').value;
+            const confirmPassword = document.getElementById('confirmPasswordInput').value;
+            
+            if (newPassword !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            localStorage.removeItem('resetEmail');
+            window.location.href = 'main-page.html';
+        });
+    }
+
+    document.querySelectorAll('.toggle-password').forEach(button => {
+        button.addEventListener('click', function() {
+            const input = this.parentElement.querySelector('input');
+            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', type);
+        });
+    });
+
+    const passwordInputs = document.querySelectorAll('.password-input');
+    passwordInputs.forEach(input => {
+        const label = input.previousElementSibling;
         
-        const newPassword = document.getElementById('newPassword').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
-        const errorAlert = document.getElementById('errorAlert');
-        
-        if (newPassword !== confirmPassword) {
-          errorAlert.classList.remove('hidden');
-          setTimeout(() => {
-            errorAlert.classList.add('hidden');
-          }, 3000);
-          return;
+        if (label && label.tagName === 'LABEL') {
+            if (input.value) {
+                label.classList.add('active');
+            }
+            
+            input.addEventListener('focus', () => {
+                label.classList.add('active');
+            });
+            
+            input.addEventListener('blur', () => {
+                if (!input.value) {
+                    label.classList.remove('active');
+                }
+            });
         }
-        
-        errorAlert.classList.add('hidden');
-        localStorage.removeItem('resetEmail');
-        window.location.href = 'main.html';
-      });
-
-       
+    });
+});
