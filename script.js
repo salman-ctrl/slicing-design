@@ -42,8 +42,8 @@ window.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    const passwordInputs = document.querySelectorAll('.password-input');
-    passwordInputs.forEach(input => {
+      const passwordInputs = document.querySelectorAll('.password-input');
+      passwordInputs.forEach(input => {
         const label = input.previousElementSibling;
         
         if (label && label.tagName === 'LABEL') {
