@@ -55,9 +55,4 @@ if (setPasswordForm) {
         window.location.href = 'main.html';
       });
 
-       document.getElementById('forgotPasswordForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('emailInput').value;
-            localStorage.setItem('resetEmail', email);
-            window.location.href = 'update-password.html';
-        });
+       
