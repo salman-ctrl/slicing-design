@@ -1,18 +1,15 @@
-/* --- GLOBAL CSS --- */
 
 body {
   font-family: 'Lexend Deca', sans-serif;
   background-color: #EBEDF2;
 }
 
-/* Styling Scroll Container & Gradients */
 .scroll-container {
   overflow: hidden;
   height: 100%;
   position: relative;
 }
 
-/* Gradasi pudar di atas */
 .scroll-container::before {
   content: '';
   position: absolute;
@@ -25,7 +22,6 @@ body {
   pointer-events: none;
 }
 
-/* Gradasi pudar di bawah */
 .scroll-container::after {
   content: '';
   position: absolute;
@@ -38,7 +34,6 @@ body {
   pointer-events: none;
 }
 
-/* Animations */
 @keyframes scrollUp {
   0% {
     transform: translateY(0);
@@ -65,7 +60,6 @@ body {
   animation: scrollDown 40s linear infinite;
 }
 
-/* FIX WIDTH HANYA DI LAYAR 1280px */
 @media (min-width: 1280px) and (max-width: 1280px) {
   .left-container-wrapper {
     width: 665px !important;
@@ -83,7 +77,6 @@ body {
   }
 }
 
-/* Optional: Floating Label Style */
 .label-float {
   font-size: 0.875rem;
   transition: all 0.2s;
