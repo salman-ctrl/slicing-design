@@ -1,72 +1,96 @@
- 
- body {
+/* --- GLOBAL CSS --- */
+
+body {
   font-family: 'Lexend Deca', sans-serif;
+  background-color: #EBEDF2;
 }
- .label-float {
-        font-size: 0.875rem;
-      }
-      
-      .label-float.active {
-        top: 0.75rem;
-        font-size: 0.75rem;
-        color: #6B7280;
-      }
 
+/* Styling Scroll Container & Gradients */
+.scroll-container {
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+}
 
-        @keyframes scrollUp {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(-50%);
-            }
-        }
+/* Gradasi pudar di atas */
+.scroll-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to bottom, #EBEDF2, transparent);
+  z-index: 10;
+  pointer-events: none;
+}
 
-        @keyframes scrollDown {
-            0% {
-                transform: translateY(-50%);
-            }
-            100% {
-                transform: translateY(0);
-            }
-        }
+/* Gradasi pudar di bawah */
+.scroll-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to top, #EBEDF2, transparent);
+  z-index: 10;
+  pointer-events: none;
+}
 
-        .animate-scroll-up {
-            animation: scrollUp 20s linear infinite;
-        }
+/* Animations */
+@keyframes scrollUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
 
-        .animate-scroll-down {
-            animation: scrollDown 20s linear infinite;
-        }
+@keyframes scrollDown {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 
-        .scroll-container {
-            overflow: hidden;
-            height: 100vh;
-            position: relative;
-        }
+.animate-scroll-up {
+  animation: scrollUp 40s linear infinite;
+}
 
-        
+.animate-scroll-down {
+  animation: scrollDown 40s linear infinite;
+}
 
-        .scroll-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 150px;
-            background: linear-gradient(to bottom, rgb(243, 244, 246), transparent);
-            z-index: 10;
-            pointer-events: none;
-        }
+/* FIX WIDTH HANYA DI LAYAR 1280px */
+@media (min-width: 1280px) and (max-width: 1280px) {
+  .left-container-wrapper {
+    width: 665px !important;
+    flex: none !important;
+  }
+  
+  .scroll-container-1 {
+    width: 380px !important;
+    flex: none !important;
+  }
+  
+  .scroll-container-2 {
+    width: 275px !important;
+    flex: none !important;
+  }
+}
 
-        .scroll-container::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 150px;
-            background: linear-gradient(to top, rgb(243, 244, 246), transparent);
-            z-index: 10;
-            pointer-events: none;
-        }
+/* Optional: Floating Label Style */
+.label-float {
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.label-float.active {
+  top: 0.75rem;
+  font-size: 0.75rem;
+  color: #6B7280;
+}
