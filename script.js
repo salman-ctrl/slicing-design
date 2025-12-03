@@ -1,3 +1,5 @@
+//script.js - VERSI YANG DIPERBAIKI
+
 window.addEventListener('DOMContentLoaded', function() {
     
     const forgotPasswordForm = document.getElementById('forgotPasswordForm');
@@ -5,14 +7,17 @@ window.addEventListener('DOMContentLoaded', function() {
         forgotPasswordForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const email = document.getElementById('emailInput').value;
-            localStorage.setItem('resetEmail', email);
+            
+            // ✅ PERBAIKAN: Gunakan sessionStorage
+            sessionStorage.setItem('resetEmail', email);
             window.location.href = 'update-password.html';
         });
     }
 
     const setPasswordForm = document.getElementById('setPasswordForm');
     if (setPasswordForm) {
-        const email = localStorage.getItem('resetEmail');
+        // ✅ PERBAIKAN: Ambil dari sessionStorage
+        const email = sessionStorage.getItem('resetEmail');
         const displayEmail = document.getElementById('displayEmail');
         if (displayEmail) {
             displayEmail.textContent = email || 'No email provided';
@@ -29,7 +34,8 @@ window.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            localStorage.removeItem('resetEmail');
+            // ✅ PERBAIKAN: Hapus dari sessionStorage
+            sessionStorage.removeItem('resetEmail');
             window.location.href = 'main-page.html';
         });
     }
@@ -42,8 +48,8 @@ window.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-      const passwordInputs = document.querySelectorAll('.password-input');
-      passwordInputs.forEach(input => {
+    const passwordInputs = document.querySelectorAll('.password-input');
+    passwordInputs.forEach(input => {
         const label = input.previousElementSibling;
         
         if (label && label.tagName === 'LABEL') {
