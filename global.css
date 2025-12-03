@@ -2,13 +2,11 @@ body {
   font-family: 'Lexend Deca', sans-serif;
   background-color: #EBEDF2;
 }
-
 .scroll-container {
   overflow: hidden;
   height: 100%;
   position: relative;
 }
-
 .scroll-container::before {
   content: '';
   position: absolute;
@@ -20,7 +18,6 @@ body {
   z-index: 10;
   pointer-events: none;
 }
-
 .scroll-container::after {
   content: '';
   position: absolute;
@@ -32,7 +29,6 @@ body {
   z-index: 10;
   pointer-events: none;
 }
-
 @keyframes scrollUp {
   0% {
     transform: translateY(0);
@@ -41,7 +37,6 @@ body {
     transform: translateY(-50%);
   }
 }
-
 @keyframes scrollDown {
   0% {
     transform: translateY(-50%);
@@ -50,37 +45,30 @@ body {
     transform: translateY(0);
   }
 }
-
 .animate-scroll-up {
   animation: scrollUp 40s linear infinite;
 }
-
 .animate-scroll-down {
   animation: scrollDown 40s linear infinite;
 }
-
 @media (min-width: 1280px) and (max-width: 1280px) {
   .left-container-wrapper {
     width: 665px !important;
     flex: none !important;
-  }
-  
+  } 
   .scroll-container-1 {
     width: 380px !important;
     flex: none !important;
   }
-  
   .scroll-container-2 {
     width: 275px !important;
     flex: none !important;
   }
 }
-
 .label-float {
   font-size: 0.875rem;
   transition: all 0.2s;
 }
-
 .label-float.active {
   top: 0.75rem;
   font-size: 0.75rem;
